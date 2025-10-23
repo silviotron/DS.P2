@@ -1,13 +1,46 @@
+import e2.Cancion;
+import e2.ListaCanciones;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+    ListaCanciones playlist = new ListaCanciones();
+    IO.println(playlist);
+    playlist.add(new Cancion("Come as you are","Nirvana","Grunge"));
+    playlist.add(new Cancion("Como Camaron","Estopa","Rumba"));
+    playlist.add(new Cancion("Lithium","Nirvana","Grunge"));
+    playlist.add(new Cancion("Por la raja de tu falda","Estopa","Rumba"));
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
-    }
+    IO.println(playlist);
+
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+    playlist.next();
+
+    IO.println(playlist);
+
+    playlist.move(1,2);
+
+    IO.println(playlist);
+
+    playlist.remove(0);
+
+    IO.println(playlist);
+
+    //IO.println(playlist.get(0));
+    //IO.println(playlist.get(1));
+    //IO.println(playlist.get(2));
+    //IO.println(playlist.get(3));
+
+
+
+
 }

@@ -1,15 +1,18 @@
 package e2;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ListaCanciones {
-    private LinkedList<Cancion> canciones;
+    private ArrayList<Cancion> canciones;
     private int posicion;
     private boolean play;
 
     public ListaCanciones() {
         this.play = false;
-        this.canciones = new LinkedList<>();
+        this.canciones = new ArrayList<>();
+    }
+    public Cancion get(int index){
+        return this.canciones.get(index);
     }
 
     public boolean add(Cancion cancion) {
@@ -26,6 +29,9 @@ public class ListaCanciones {
     public Cancion remove(int index) {
         if (index < 0 || index > this.canciones.size()) {
             return null;
+        }
+        if (index >= this.posicion) {
+            this.posicion--;
         }
         return this.canciones.remove(index);
     }
@@ -53,7 +59,7 @@ public class ListaCanciones {
     }
 
     public void next(){
-        if (this.posicion == this.canciones.size()) {
+        if (this.posicion == this.canciones.size()-1) {
             this.posicion=0;
         }
         else {
@@ -62,7 +68,7 @@ public class ListaCanciones {
     }
     public void previous(){
         if (this.posicion == 0) {
-            this.posicion=this.canciones.size();
+            this.posicion=this.canciones.size()-1;
         }
         else {
             this.posicion++;
@@ -70,6 +76,10 @@ public class ListaCanciones {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "canciones=" + canciones +'\n'+
+                "posicion=" + posicion +'\n'+
+                "play=" + play ;
+    }
 }

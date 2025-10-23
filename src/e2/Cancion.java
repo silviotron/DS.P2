@@ -13,6 +13,6 @@ public class Cancion {
 
     @Override
     public String toString() {
-        return titulo;
+        return titulo + " de " + autor + " (" + estilo + ")";
     }
 }
