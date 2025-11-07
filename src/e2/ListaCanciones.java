@@ -1,5 +1,6 @@
 package e2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListaCanciones {
@@ -30,7 +31,7 @@ public class ListaCanciones {
         if (index < 0 || index > this.canciones.size()) {
             return null;
         }
-        if (index >= this.posicion) {
+        if (index < this.posicion) {
             this.posicion--;
         }
         return this.canciones.remove(index);
@@ -59,7 +60,7 @@ public class ListaCanciones {
     }
 
     public void next(){
-        if (this.posicion == this.canciones.size()-1) {
+        if (this.posicion >= this.canciones.size()-1) {
             this.posicion=0;
         }
         else {
@@ -78,8 +79,9 @@ public class ListaCanciones {
 
     @Override
     public String toString() {
-        return "canciones=" + canciones +'\n'+
+        return
                 "posicion=" + posicion +'\n'+
-                "play=" + play ;
+                "play=" + play + '\n' +
+                "canciones=" + canciones ;
     }
 }
