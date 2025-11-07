@@ -5,6 +5,7 @@ public abstract class Personaje {
     private int vida;
     private int armadura;
     Dado dado;
+    private Boolean muerto;
 
 
     public Personaje(String nombre, int vida, int armadura, Dado dado) {
@@ -12,6 +13,15 @@ public abstract class Personaje {
         this.vida = vida;
         this.armadura = armadura;
         this.dado = dado;
+        this.muerto = false;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getVida() {
+        return vida;
     }
 
     public boolean atacar(Personaje personaje) {
@@ -27,5 +37,10 @@ public abstract class Personaje {
 
     public int getArmadura() {
         return armadura;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + vida + "HP " + armadura+"Armour";
     }
 }
