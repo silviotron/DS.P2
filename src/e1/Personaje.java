@@ -16,6 +16,10 @@ public abstract class Personaje {
         this.muerto = false;
     }
 
+    public boolean isMuerto() {
+        return muerto;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -24,15 +28,18 @@ public abstract class Personaje {
         return vida;
     }
 
-    public boolean atacar(Personaje personaje) {
+    public int atacar(Personaje personaje) {
         return personaje.atacado(this.dado.tirada());
     }
-    public boolean atacado(int dmg){
-        if(this.armadura > dmg){
-            this.vida-=dmg;
-
+    public int atacado(int dmg){
+        int realDmg = Math.max(this.armadura-dmg,0);
+        this.vida-=realDmg;
+        if(this.vida <= 0){
+            this.muerto = true;
+            this.vida=0;
         }
-        return this.vida<=0;
+
+        return realDmg;
     }
 
     public int getArmadura() {
@@ -41,6 +48,6 @@ public abstract class Personaje {
 
     @Override
     public String toString() {
-        return nombre + " " + vida + "HP " + armadura+"Armour";
+        return nombre + " " + vida + "HP ";
     }
 }

@@ -11,10 +11,11 @@ void main() {
     juego.addAzul(new Elfo("LUIS",100,100));
     juego.addAzul(new Elfo("MARCOS",100,100));
     juego.addAzul(new Elfo("JUNINHO",100,100));
+    juego.addAzul(new Elfo("SELTON",100,100));
+    juego.addAzul(new Elfo("ARITZ",100,100));
 
-    juego.addRojo(new Elfo("SELTON",100,100));
-    juego.addRojo(new Elfo("ARITZ",100,100));
     juego.addRojo(new Elfo("OSCAR",100,100));
+    juego.addRojo(new Elfo("CHARLES",100,100));
     juego.addRojo(new Elfo("AYMERIC",100,100));
     juego.addRojo(new Elfo("MAROAN",100,100));
     juego.addRojo(new Elfo("WIWI",100,100));

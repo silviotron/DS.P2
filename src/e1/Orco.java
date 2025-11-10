@@ -6,7 +6,7 @@ public class Orco extends Bestia{
     }
 
     @Override
-    public boolean atacar(Personaje personaje) {
+    public int atacar(Personaje personaje) {
         int dmg  = this.dado.tirada()+(int)(personaje.getArmadura()*0.1);
         return personaje.atacado(dmg);
 

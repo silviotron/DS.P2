@@ -5,7 +5,7 @@ public class Hobbit extends Heroe{
         super(nombre, vida, armadura);
     }
     @Override
-    public boolean atacar(Personaje personaje) {
+    public int atacar(Personaje personaje) {
         int dmg = this.dado.tirada();
         if(personaje instanceof Trasgo){
             dmg-=5;

@@ -3,7 +3,6 @@ package e1;
 import java.util.ArrayList;
 
 public class Juego {
-    //TODO: toda la logica de batalla entre ejercitos usando ArrayList.b
     //TODO: yo diria de hacer que en vez de ejercito azul vs rojo fuera un aray de tamaño 2 para que se pudiera escalar, por ahora lo dejo asi que es lo que pide
     private ArrayList<Personaje> azul;
     private ArrayList<Personaje> rojo;
@@ -24,37 +23,52 @@ public class Juego {
     public Boolean addRojo(Personaje personaje) {
         return this.rojo.add(personaje);
     }
-//TODO: ahora solo falta matar a los que estan muertos antes de pasar al siguiente turno, tenemos los 2 arrays con los muertos es solo vaciar esas posiciones de cada array en principio en sentido inverso, es decir primero eliminar al personaje con id mas alta y ya esta
-//TODO: nose porque no pasa al siguiente turno como tal y la vida es tan negativa.
     public void batalla(){
+        int turno = 0;
 
-        while(this.azul.size()>0 || this.rojo.size() > 0){
-            int turno = 0;
-            ArrayList<Integer> muertoAzul = new ArrayList<>();
-            ArrayList<Integer> muertoRojo = new ArrayList<>();
+        while((!this.azul.isEmpty() && !this.rojo.isEmpty())){
+            ArrayList<Personaje> muertoAzul = new ArrayList<>();
+            ArrayList<Personaje> muertoRojo = new ArrayList<>();
             System.out.printf("Turno %d: \n", turno);
             for (int i = 0; i < this.azul.size() && i < this.rojo.size(); i++) {
-                Personaje personajeAzul = this.azul.get(i);
-                Personaje personajeRojo = this.rojo.get(i);
-                System.out.println(personajeAzul.getNombre()+" ("+personajeAzul.getVida()+"HP) ataca a  "+personajeRojo.getNombre() +" ("+personajeRojo.getVida()+"HP)" );
-                if(personajeAzul.atacar(personajeRojo)){
-                    System.out.println(personajeRojo.getNombre() + " fue asesinado por "+personajeAzul.getNombre());
-                    muertoRojo.add(i);
-                }else{
-                    System.out.println(personajeRojo.getNombre()+" ("+personajeRojo.getVida()+"HP) ataca a  "+personajeAzul.getNombre() +" ("+personajeAzul.getVida()+"HP)" );
-                    if(personajeRojo.atacar(personajeAzul)){
-                        System.out.println(personajeAzul.getNombre() + " fue asesinado por "+personajeRojo.getNombre());
-                        muertoAzul.add(i);
+                Personaje pAzul = this.azul.get(i);
+                Personaje pRojo = this.rojo.get(i);
+                System.out.println(pAzul.getNombre()+" ("+pAzul.getVida()+"HP) ataca a "+pRojo.getNombre() +" ("+pRojo.getVida()+"HP)" );
+                System.out.println(pAzul.getNombre()+" ("+pAzul.getVida()+"HP) le quita "+pAzul.atacar(pRojo)+"HP a  "+pRojo.getNombre() +" ("+pRojo.getVida()+"HP)" );
+                if(pRojo.isMuerto()){
+                    System.out.println(pRojo.getNombre() + " fue asesinado por "+pAzul.getNombre());
+                    this.rojo.remove(pRojo);
+                    if(this.rojo.size()>i){
+                        pRojo = this.rojo.get(i);
+                    }else{
+                        break;
                     }
+
                 }
+                    System.out.println(pRojo.getNombre()+" ("+pRojo.getVida()+"HP) ataca a  "+pAzul.getNombre() +" ("+pAzul.getVida()+"HP)" );
+                    System.out.println(pRojo.getNombre()+" ("+pRojo.getVida()+"HP) le quita "+pRojo.atacar(pAzul)+"HP a  "+pAzul.getNombre() +" ("+pAzul.getVida()+"HP)" );
+                    if(pAzul.isMuerto()){
+                        System.out.println(pAzul.getNombre() + " fue asesinado por "+pRojo.getNombre());
+                        this.azul.remove(pAzul);
+
+
+                    }
+
             }
-            for(int i = muertoAzul.size()-1; i >= 0; i--) {
-                this.azul.remove(muertoAzul.get(i));
+            for (Personaje p : muertoAzul) {
+                this.azul.remove(p);
             }
-            for(int i = muertoRojo.size()-1; i >= 0; i--) {
-                this.azul.remove(muertoRojo.get(i));
+            for (Personaje p : muertoRojo) {
+                this.rojo.remove(p);
             }
             turno++;
+        }
+        if(this.azul.isEmpty()&&this.rojo.isEmpty()){
+            System.out.println("EMPATE");
+        } else if (this.azul.isEmpty()) {
+            System.out.println("GANAN LOS ROJOS");
+        }else{
+            System.out.println("GANAN LOS AZULES");
         }
         System.out.println("END");
     }

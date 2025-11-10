@@ -6,7 +6,7 @@ public class Elfo extends Heroe{
     }
 
     @Override
-    public boolean atacar(Personaje personaje) {
+    public int atacar(Personaje personaje) {
         int dmg = this.dado.tirada();
         if(personaje instanceof Orco){
             dmg+=10;
