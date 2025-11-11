@@ -27,8 +27,6 @@ public class Juego {
         int turno = 0;
 
         while((!this.azul.isEmpty() && !this.rojo.isEmpty())){
-            ArrayList<Personaje> muertoAzul = new ArrayList<>();
-            ArrayList<Personaje> muertoRojo = new ArrayList<>();
             System.out.printf("Turno %d: \n", turno);
             for (int i = 0; i < this.azul.size() && i < this.rojo.size(); i++) {
                 Personaje pAzul = this.azul.get(i);
@@ -55,12 +53,7 @@ public class Juego {
                     }
 
             }
-            for (Personaje p : muertoAzul) {
-                this.azul.remove(p);
-            }
-            for (Personaje p : muertoRojo) {
-                this.rojo.remove(p);
-            }
+
             turno++;
         }
         if(this.azul.isEmpty()&&this.rojo.isEmpty()){

@@ -1,25 +1,22 @@
-import e1.Elfo;
-import e1.Juego;
-import e2.Cancion;
-import e2.ListaCanciones;
+import e1.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
     Juego juego = new Juego();
     juego.addAzul(new Elfo("PEPE",100,100));
-    juego.addAzul(new Elfo("LUIS",100,100));
-    juego.addAzul(new Elfo("MARCOS",100,100));
+    juego.addAzul(new Orco("LUIS",100,100));
+    juego.addAzul(new Humano("MARCOS",100,100));
     juego.addAzul(new Elfo("JUNINHO",100,100));
     juego.addAzul(new Elfo("SELTON",100,100));
     juego.addAzul(new Elfo("ARITZ",100,100));
 
     juego.addRojo(new Elfo("OSCAR",100,100));
-    juego.addRojo(new Elfo("CHARLES",100,100));
+    juego.addRojo(new Humano("CHARLES",100,100));
     juego.addRojo(new Elfo("AYMERIC",100,100));
     juego.addRojo(new Elfo("MAROAN",100,100));
     juego.addRojo(new Elfo("WIWI",100,100));
-    juego.addRojo(new Elfo("EMAD",100,100));
+    juego.addRojo(new Trasgo("EMAD",100,100));
 
     juego.batalla();
 
