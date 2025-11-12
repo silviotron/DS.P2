@@ -33,10 +33,10 @@ public abstract class Personaje {
     }
     public int atacado(int dmg){
         int realDmg = Math.max(this.armadura-dmg,0);
-        this.vida-=realDmg;
+        this.vida -= realDmg;
         if(this.vida <= 0){
             this.muerto = true;
-            this.vida=0;
+            this.vida = 0;
         }
 
         return realDmg;

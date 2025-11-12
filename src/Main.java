@@ -3,7 +3,7 @@ import e1.*;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    Juego juego = new Juego();
+    /*Juego juego = new Juego();
     juego.addAzul(new Elfo("PEPE",100,100));
     juego.addAzul(new Orco("LUIS",100,100));
     juego.addAzul(new Humano("MARCOS",100,100));
@@ -19,7 +19,7 @@ void main() {
     juego.addRojo(new Trasgo("EMAD",100,100));
 
     juego.batalla();
-
++/
 
 
 
