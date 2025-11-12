@@ -1,8 +1,18 @@
 import e1.*;
+import e3.Bicola;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
+    Bicola<String> bicola = new Bicola<>();
+    bicola.insertarDch("hola");
+    bicola.insertarDch("que");
+    bicola.insertarDch("tal");
+    bicola.insertarIzq("izquierda");
+    System.out.println(bicola.toString());
+    for (String s : bicola){
+        System.out.println(s);
+    }
     /*Juego juego = new Juego();
     juego.addAzul(new Elfo("PEPE",100,100));
     juego.addAzul(new Orco("LUIS",100,100));
