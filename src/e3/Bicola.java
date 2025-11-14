@@ -1,10 +1,8 @@
 package e3;
 
-import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+import java.util.NoSuchElementException;
 
 public class Bicola<E> implements Iterable<E>{
     private LinkedList<E> bicola = new LinkedList<E>();
@@ -49,20 +47,26 @@ public class Bicola<E> implements Iterable<E>{
     }
 
     private class bicolaIterator implements Iterator<E>{
-        private int indice = 0;
-        private boolean   inverso = false;
+        private int indice;
+        private boolean inverso;
+        private int tamano;
+
         public bicolaIterator(Boolean inverso) {
             this.inverso = inverso;
-            this.indice = inverso?bicola.size()-1:0;
+            this.tamano = bicola.size();
+            this.indice = inverso?tamano-1:0;
         }
 
         @Override
         public boolean hasNext() {
-            return inverso?indice >= 0: indice < bicola.size();
+            return inverso?indice >= 0: indice < tamano;
         }
 
         @Override
         public E next() {
+            if(!hasNext()){
+                throw new NoSuchElementException();
+            }
             return bicola.get(inverso?indice--:indice++);
         }
     }

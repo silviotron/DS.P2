@@ -15,7 +15,6 @@ void main() {
     for (String s : bicola){
         System.out.println(s);
     }
-    */
 /*
     Juego juego = new Juego();
     juego.addAzul(new Elfo("PEPE",100,100));
@@ -37,7 +36,7 @@ void main() {
     }
 
 */
-
+/*
     ListaCanciones playlist = new ListaCanciones();
     playlist.add(new Cancion("Come as you are","Nirvana","Nirvana","Grunge"));
     playlist.add(new Cancion("Como Camaron","Nirvana","Estopa","Rumba"));
@@ -75,7 +74,7 @@ void main() {
     //IO.println(playlist.get(2));
     //IO.println(playlist.get(3));
 
-
+*/
 
 
 }
