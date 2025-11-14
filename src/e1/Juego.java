@@ -3,11 +3,11 @@ package e1;
 import java.util.ArrayList;
 
 public class Juego {
-    //TODO: yo diria de hacer que en vez de ejercito azul vs rojo fuera un aray de tamaño 2 para que se pudiera escalar, por ahora lo dejo asi que es lo que pide
+
     private ArrayList<Personaje> azul;
     private ArrayList<Personaje> rojo;
 
-    public Juego(ArrayList<Personaje> azules, ArrayList<Personaje> rojos) {
+    public Juego(ArrayList<Personaje> azul, ArrayList<Personaje> rojo) {
         this.azul = azul;
         this.rojo = rojo;
     }
@@ -23,46 +23,48 @@ public class Juego {
     public Boolean addRojo(Personaje personaje) {
         return this.rojo.add(personaje);
     }
-    public void batalla(){
-        int turno = 0;
 
-        while((!this.azul.isEmpty() && !this.rojo.isEmpty())){
-            System.out.printf("Turno %d: \n", turno);
+    public ArrayList<String> batalla(){
+        ArrayList<String> resultado = new ArrayList<String>();
+        int turno = 1;
+
+        while(!this.azul.isEmpty() && !this.rojo.isEmpty()){
+            resultado.add("Turno " + turno + ":");
             for (int i = 0; i < this.azul.size() && i < this.rojo.size(); i++) {
                 Personaje pAzul = this.azul.get(i);
                 Personaje pRojo = this.rojo.get(i);
-                System.out.println(pAzul.getNombre()+" ("+pAzul.getVida()+"HP) ataca a "+pRojo.getNombre() +" ("+pRojo.getVida()+"HP)" );
-                System.out.println(pAzul.getNombre()+" ("+pAzul.getVida()+"HP) le quita "+pAzul.atacar(pRojo)+"HP a  "+pRojo.getNombre() +" ("+pRojo.getVida()+"HP)" );
+
+                int vidaInicialRojo = pRojo.getVida();
+                int dmgAzul = pAzul.atacar(pRojo);
+                resultado.add(pAzul.getNombre()+" ("+pAzul.getVida()+"HP) ataca a "+pRojo.getNombre()+" ("+vidaInicialRojo+"HP) y le quita "+dmgAzul+"HP (ahora "+pRojo.getNombre()+" tiene "+pRojo.getVida()+"HP)");
+
                 if(pRojo.isMuerto()){
-                    System.out.println(pRojo.getNombre() + " fue asesinado por "+pAzul.getNombre());
-                    this.rojo.remove(pRojo);
-                    if(this.rojo.size()>i){
-                        pRojo = this.rojo.get(i);
-                    }else{
-                        break;
-                    }
+                    resultado.add(pRojo.getNombre() + " fue asesinado por "+pAzul.getNombre());
+                    this.rojo.remove(i);
+                    i--;
+                } else {
+                    int vidaInicialAzul = pAzul.getVida();
+                    int dmgRojo = pRojo.atacar(pAzul);
+                    resultado.add(pRojo.getNombre()+" ("+pRojo.getVida()+"HP) ataca a "+pAzul.getNombre()+" ("+vidaInicialAzul+"HP) y le quita "+dmgRojo+"HP (ahora "+pAzul.getNombre()+" tiene "+pAzul.getVida()+"HP)");
 
-                }
-                    System.out.println(pRojo.getNombre()+" ("+pRojo.getVida()+"HP) ataca a  "+pAzul.getNombre() +" ("+pAzul.getVida()+"HP)" );
-                    System.out.println(pRojo.getNombre()+" ("+pRojo.getVida()+"HP) le quita "+pRojo.atacar(pAzul)+"HP a  "+pAzul.getNombre() +" ("+pAzul.getVida()+"HP)" );
                     if(pAzul.isMuerto()){
-                        System.out.println(pAzul.getNombre() + " fue asesinado por "+pRojo.getNombre());
-                        this.azul.remove(pAzul);
-
-
+                        resultado.add(pAzul.getNombre() + " fue asesinado por "+pRojo.getNombre());
+                        this.azul.remove(i);
+                        i--;
                     }
-
+                }
             }
 
             turno++;
         }
         if(this.azul.isEmpty()&&this.rojo.isEmpty()){
-            System.out.println("EMPATE");
+            resultado.add("EMPATE");
         } else if (this.azul.isEmpty()) {
-            System.out.println("GANAN LOS ROJOS");
+            resultado.add("GANAN LOS ROJOS");
         }else{
-            System.out.println("GANAN LOS AZULES");
+            resultado.add("GANAN LOS AZULES");
         }
-        System.out.println("END");
+        resultado.add("END");
+        return resultado;
     }
 }

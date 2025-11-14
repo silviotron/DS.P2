@@ -7,8 +7,6 @@ public class Orco extends Bestia{
 
     @Override
     public int atacar(Personaje personaje) {
-        int dmg  = this.dado.tirada()+(int)(personaje.getArmadura()*0.1);
-        return personaje.atacado(dmg);
-
+        return personaje.atacado(this.dado.tirada() + (int)(personaje.getArmadura()*0.1));
     }
 }

@@ -4,7 +4,7 @@ public abstract class Personaje {
     private String nombre;
     private int vida;
     private int armadura;
-    Dado dado;
+    protected Dado dado;
     private Boolean muerto;
 
 
@@ -32,7 +32,7 @@ public abstract class Personaje {
         return personaje.atacado(this.dado.tirada());
     }
     public int atacado(int dmg){
-        int realDmg = Math.max(this.armadura-dmg,0);
+        int realDmg = Math.max(dmg-this.armadura,0);
         this.vida -= realDmg;
         if(this.vida <= 0){
             this.muerto = true;
