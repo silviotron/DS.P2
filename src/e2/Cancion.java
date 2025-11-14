@@ -17,9 +17,25 @@ public class Cancion implements Comparable<Cancion>{
         java.util.Objects.requireNonNull(o);
         int c = this.titulo.compareToIgnoreCase(o.titulo);
         if(c==0){
-            return this.album.compareTo(o.album);
+            return this.album.compareToIgnoreCase(o.album);
         }
         return c;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getEstilo() {
+        return estilo;
     }
 
     @Override

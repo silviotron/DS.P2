@@ -1,7 +1,8 @@
 package e2;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListaCanciones {
     private ArrayList<Cancion> canciones;
@@ -28,31 +29,58 @@ public class ListaCanciones {
     }
 
     public Cancion remove(int index) {
-        if (index < 0 || index > this.canciones.size()) {
+        if (index < 0 || index >= this.canciones.size()) {
             return null;
         }
         if (index < this.posicion) {
             this.posicion--;
+        } else if (index == this.posicion && this.posicion >= this.canciones.size() - 1) {
+            this.posicion = this.canciones.size() - 2;
+            if (this.posicion < 0) {
+                this.posicion = 0;
+            }
         }
         return this.canciones.remove(index);
     }
-    //TODO: mira que los return false estan bien
-    public boolean move(int from,int to){
-        if (from < 0 || from > this.canciones.size()) {
-            return false;
-        }
-        if (to < 0 || to > this.canciones.size()-1) {
-            return false;
-        }
-        Cancion cancion = this.remove(from);
-        return this.add(to,cancion);
 
+    public boolean move(int from,int to){
+        if (from < 0 || from >= this.canciones.size()) {
+            return false;
+        }
+        if (to < 0 || to >= this.canciones.size()) {
+            return false;
+        }
+        Cancion cancion = this.canciones.remove(from);
+        this.canciones.add(to, cancion);
+        if (from == this.posicion) {
+            this.posicion = to;
+        } else if (from < this.posicion && to >= this.posicion) {
+            this.posicion--;
+        } else if (from > this.posicion && to <= this.posicion) {
+            this.posicion++;
+        }
+        return true;
+    }
+
+    public int getPosicion() {
+        return this.posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        if (posicion >= 0 && posicion < this.canciones.size()) {
+            this.posicion = posicion;
+        }
+    }
+
+    public boolean isPlaying() {
+        return this.play;
     }
 
     public Cancion play(){
         if(this.canciones.isEmpty()){
           return null;
         }
+        this.play = true;
         return canciones.get(this.posicion);
     }
     public void pause(){
@@ -66,16 +94,33 @@ public class ListaCanciones {
         else {
             this.posicion++;
         }
+        if (this.play) {
+            this.play();
+        }
     }
     public void previous(){
         if (this.posicion == 0) {
             this.posicion=this.canciones.size()-1;
         }
         else {
-            this.posicion++;
+            this.posicion--;
+        }
+        if (this.play) {
+            this.play();
         }
     }
 
+    public void ordenar() {
+        Collections.sort(this.canciones);
+        this.play = false;
+        this.posicion = 0;
+    }
+
+    public void ordenar(Comparator<Cancion> comparador) {
+        Collections.sort(this.canciones, comparador);
+        this.play = false;
+        this.posicion = 0;
+    }
 
     @Override
     public String toString() {

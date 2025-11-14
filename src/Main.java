@@ -1,5 +1,6 @@
 import e1.*;
-import e3.Bicola;
+import e2.*;
+import e3.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -15,7 +16,7 @@ void main() {
         System.out.println(s);
     }
     */
-
+/*
     Juego juego = new Juego();
     juego.addAzul(new Elfo("PEPE",100,100));
     juego.addAzul(new Orco("LUIS",100,100));
@@ -35,13 +36,15 @@ void main() {
         System.out.println(s);
     }
 
+*/
 
-
-   /* ListaCanciones playlist = new ListaCanciones();
+    ListaCanciones playlist = new ListaCanciones();
     playlist.add(new Cancion("Come as you are","Nirvana","Nirvana","Grunge"));
     playlist.add(new Cancion("Como Camaron","Nirvana","Estopa","Rumba"));
     playlist.add(new Cancion("Lithium","Nirvana","Nirvana","Grunge"));
-    playlist.add(new Cancion("Por la raja de tu falda","Nirvana","Estopa","Rumba"));
+    playlist.add(new Cancion("Por la raja de tu falda","Nirvana","III","Rumba"));
+    playlist.add(new Cancion("Por la raja de tu falda","Nirvana","EEE","Rumba"));
+    playlist.add(new Cancion("Por la raja de tu falda","Nirvana","AA","Rumba"));
     IO.println(playlist);
 
     playlist.move(1,2);
@@ -58,7 +61,15 @@ void main() {
 
     playlist.remove(0);
     IO.println(playlist);
-*/
+
+    playlist.ordenar(new ComparadorPorAutor());
+
+    IO.println(playlist);
+
+    playlist.ordenar(new ComparadorPorEstilo());
+
+    IO.println(playlist);
+
     //IO.println(playlist.get(0));
     //IO.println(playlist.get(1));
     //IO.println(playlist.get(2));
